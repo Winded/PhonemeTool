@@ -2,6 +2,7 @@
 local function EntityChanged(container, key, value)
 
 	if not IsValid(value) then
+		print("Shit");
 		container.PresetGroups = {};
 		container.Manipulating = false;
 		return;
@@ -11,6 +12,7 @@ local function EntityChanged(container, key, value)
 	container.Manipulating = false;
 
 	container.PresetGroups = PHT.GetPresetGroups(entity);
+	container.HasPresetGroups = container.PresetGroups ~= nil;
 
 end
 
@@ -18,10 +20,10 @@ function PHT.SetupData()
 
 	local defaults = table.Copy(PHT.DefaultValues);
 
-	local data = BiValues021.New("PHTData", defaults, {IsPrivate = true, UseSync = true, AutoApply = true});
+	local data = BiValuesV021.New("PHTData", {IsPrivate = true, UseSync = true, AutoApply = true}, defaults);
 
 	data:_Listen("Entity", EntityChanged);
 
-	PTH.Data = data;
+	PHT.Data = data;
 
 end

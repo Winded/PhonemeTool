@@ -4,6 +4,22 @@ TOOL.Category = "Poser";
 TOOL.Command = nil;
 TOOL.ConfigName = "";
 
+function TOOL:LeftClick(tr)
+
+	if not IsValid(tr.Entity) or tr.Entity:GetClass() ~= "prop_ragdoll" then
+		return false;
+	end
+
+	if CLIENT then
+		return true;
+	end
+
+	local player = self:GetOwner();
+	player.PHTData.Entity = tr.Entity;
+	return true;
+
+end
+
 if CLIENT then
 	
 language.Add("tool.phonemetool.name", TOOL.Name);

@@ -5,6 +5,7 @@ PHT.DefaultValues = {
 	Entity = nil,
 
 	PresetGroups = {},
+	HasPresetGroups = false,
 
 	Manipulating = false,
 
