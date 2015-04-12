@@ -1,5 +1,5 @@
 
-include("bivalues/bivalues.lua");
+include("phonemetool/bivalues/bivalues.lua");
 
 include("phonemetool/shared.lua");
 

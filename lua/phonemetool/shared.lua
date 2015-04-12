@@ -15,6 +15,6 @@ PHT.DefaultValues = {
 	TweenValue = 0,
 };
 
-PHT.BiValues = BiValuesV021;
+PHT.BiValues = BiValuesV022;
 
 AddCSLuaFile();

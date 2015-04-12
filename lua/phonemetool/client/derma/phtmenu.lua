@@ -51,10 +51,12 @@ function PANEL:AddPreset(name, category)
 
 	local itemLabel = vgui.Create("DLabel", c.List);
 	itemLabel:SetText(name);
+	itemLabel:SizeToContents();
 	local item = vgui.Create("Slider", c.List);
 	item:SetMinMax(0, 1);
 	item:SetDecimals(2);
-	item.Label = itemLabel;
+	item.DLabel = itemLabel;
+	item.Category = c;
 
 	c.List:AddItem(itemLabel);
 	c.List:AddItem(item);
@@ -66,8 +68,8 @@ end
 
 function PANEL:Clear()
 	for _, item in pairs(self.Presets) do
-		item.Category.List:RemoveItem(item.Label);
-		item.Label:Remove();
+		item.Category.List:RemoveItem(item.DLabel);
+		item.DLabel:Remove();
 		item.Category.List:RemoveItem(item);
 		item:Remove();
 		table.RemoveByValue(self.Presets, item);

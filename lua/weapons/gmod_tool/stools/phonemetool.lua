@@ -33,4 +33,27 @@ function TOOL.BuildCPanel(cpanel)
 	end
 end
 
+local Rectangle = surface.GetTextureID("gui/faceposer_indicator");
+function TOOL:DrawHUD()
+
+	local entity = PHT.Data.Entity;
+	if not IsValid(entity) then return; end
+	
+	local eyeattachment = entity:LookupAttachment( "eyes" )
+	if eyeattachment == 0 then return; end
+	
+	local att = entity:GetAttachment(eyeattachment);
+	local screenPos = att.Pos:ToScreen();
+	if not screenPos.visible then return; end
+	
+	local playerEyes = LocalPlayer():EyeAngles();
+	local side = (att.Pos + playerEyes:Right() * 20):ToScreen();
+	local size = math.abs(side.x - screenPos.x);
+	
+	surface.SetDrawColor(255, 255, 255, 255);
+	surface.SetTexture(Rectangle);
+	surface.DrawTexturedRect(screenPos.x - size, screenPos.y - size, size * 2, size * 2);
+
+end
+
 end

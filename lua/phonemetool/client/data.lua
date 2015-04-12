@@ -10,7 +10,7 @@ local function EntityChanged(container, key, value)
 
 	container.Manipulating = false;
 
-	PHT.CurrentPresetGroups = PHT.GetPresetGroups(entity);
+	container.PresetGroups = PHT.GetPresetGroups(entity);
 	container.HasPresetGroups = container.PresetGroups ~= nil;
 
 end
