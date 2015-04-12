@@ -53,7 +53,7 @@ function PHT.SetupData(player)
 
 	local defaults = table.Copy(PHT.DefaultValues);
 
-	local data = BiValuesV021.New(player, "PHTData", {IsPrivate = true, UseSync = true, AutoApply = true}, defaults);
+	local data = PHT.BiValues.New(player, "PHTData", {IsPrivate = true, UseSync = true, AutoApply = true}, defaults);
 
 	data:_Listen("Manipulating", ManipulatingToggled);
 	data:_Listen("TweenValue", TweenValueChanged);
