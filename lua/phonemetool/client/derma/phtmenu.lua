@@ -72,13 +72,13 @@ function PANEL:Clear()
 		item.DLabel:Remove();
 		item.Category.List:RemoveItem(item);
 		item:Remove();
-		table.RemoveByValue(self.Presets, item);
 	end
+	table.Empty(self.Presets);
 	for _, item in pairs(self.Categories) do
 		self:RemoveItem(item);
 		item:Remove();
-		table.RemoveByValue(self.Categories, item);
 	end
+	table.Empty(self.Categories);
 end
 
 vgui.Register("PHTMenu", PANEL, "DPanelList");
@@ -90,6 +90,9 @@ function MENUBIND:Remove()
 end
 function MENUBIND:SetValue(value)
 	local menu = self.Entity;
+	for _, item in pairs(menu.Presets) do
+		item:UnBind(self.Container, "TweenValue");
+	end
 	menu:Clear();
 	if not value or not value.PresetGroups then
 		return;
@@ -119,12 +122,30 @@ function PRESETBIND:Init()
 	slider.Slider.OldMousePressed = slider.Slider.OnMousePressed;
 	slider.Slider.OldMouseReleased = slider.Slider.OnMouseReleased;
 	slider.Slider.OnMousePressed = function(s, mc)
+		print("Press");
 		container.TargetPreset = preset;
 		container.Manipulating = true;
 		self.Manipulating = true;
 		s:OldMousePressed(mc);
 	end
 	slider.Slider.OnMouseReleased = function(s, mc)
+		print("Release");
+		if self.Manipulating then
+			container.Manipulating = false;
+			self.Manipulating = false;
+			container.TweenValue = 0;
+		end
+		s:OldMouseReleased(mc);
+	end
+	slider.Slider.Knob.OldMousePressed = slider.Slider.Knob.OnMousePressed;
+	slider.Slider.Knob.OldMouseReleased = slider.Slider.Knob.OnMouseReleased;
+	slider.Slider.Knob.OnMousePressed = function(s, mc)
+		container.TargetPreset = preset;
+		container.Manipulating = true;
+		self.Manipulating = true;
+		s:OldMousePressed(mc);
+	end
+	slider.Slider.Knob.OnMouseReleased = function(s, mc)
 		if self.Manipulating then
 			container.Manipulating = false;
 			self.Manipulating = false;
@@ -151,6 +172,8 @@ function PRESETBIND:Remove()
 	local slider = self.Entity;
 	slider.Slider.OnMousePressed = slider.Slider.OldMousePressed;
 	slider.Slider.OnMouseReleased = slider.Slider.OldMousePressed;
+	slider.Slider.Knob.OnMousePressed = slider.Slider.Knob.OldMousePressed;
+	slider.Slider.Knob.OnMouseReleased = slider.Slider.Knob.OldMousePressed;
 	slider.OnValueChanged = function() end
 end
 function PRESETBIND:SetValue(value)

@@ -27,7 +27,13 @@ language.Add("tool.phonemetool.desc", "Allows you to facepose ragdolls with pres
 language.Add("tool.phonemetool.0", "Left click a ragdoll to select it, and start faceposing using the context menu.");
 
 function TOOL.BuildCPanel(cpanel)
+	if PHT.FlexMenu then
+		PHT.FlexMenu:SetVisible(true);
+		PHT.FlexMenu:SetParent(cpanel);
+		cpanel:AddItem(PHT.FlexMenu);
+	end
 	if PHT.Menu then
+		PHT.Menu:SetVisible(true);
 		PHT.Menu:SetParent(cpanel);
 		cpanel:AddItem(PHT.Menu);
 	end

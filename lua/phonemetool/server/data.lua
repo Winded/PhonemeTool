@@ -27,6 +27,9 @@ local function TweenValueChanged(container, key, value)
 	for i = 0, entity:GetFlexNum() - 1 do
 		
 		local name = entity:GetFlexName(i);
+		if table.HasValue(container.IgnoredFlexes, name) then
+			continue;
+		end
 		local targetValue = start[i];
 
 		for _, flexPreset in pairs(target.ControlValues) do
