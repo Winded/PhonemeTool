@@ -1,0 +1,13 @@
+{
+    "ignore": [
+		".git*",
+		".gitmodules",
+		"sfm/*",
+		"README.md",
+        "lua/phonemetool/bivalues/.git*",
+        "lua/phonemetool/bivalues/example.lua",
+        "lua/phonemetool/bivalues/README.md"
+    ],
+    "title": "Phoneme Tool",
+    "type": "tool"
+}
