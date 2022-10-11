@@ -54,7 +54,7 @@ function PANEL:AddPreset(name, category)
 	itemLabel:SetColor(Color( 20, 20, 20, 255 ))
 	itemLabel:SizeToContents();
 	local item = vgui.Create("Slider", c.List);
-	item:SetMinMax(0, 1);
+	item:SetMinMax(-1, 1);
 	item:SetDecimals(2);
 	item:SetDark(true);
 	item.DLabel = itemLabel;
