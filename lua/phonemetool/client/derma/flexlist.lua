@@ -26,6 +26,7 @@ end
 function PANEL:AddCheckBox(name)
 	local cb = vgui.Create("DCheckBoxLabel", self);
 	cb:SetText(name);
+	cb:SetDark(true);
 	self.List:AddItem(cb);
 	table.insert(self.FlexItems, cb);
 	return cb;

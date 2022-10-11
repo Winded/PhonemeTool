@@ -10,6 +10,7 @@ function TOOL:LeftClick(tr)
 		return false;
 	end
 
+
 	if CLIENT then
 		return true;
 	end
