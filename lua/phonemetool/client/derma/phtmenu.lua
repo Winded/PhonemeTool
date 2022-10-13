@@ -51,10 +51,12 @@ function PANEL:AddPreset(name, category)
 
 	local itemLabel = vgui.Create("DLabel", c.List);
 	itemLabel:SetText(name);
+	itemLabel:SetColor(Color( 20, 20, 20, 255 ))
 	itemLabel:SizeToContents();
 	local item = vgui.Create("Slider", c.List);
-	item:SetMinMax(0, 1);
+	item:SetMinMax(-1, 1);
 	item:SetDecimals(2);
+	item:SetDark(true);
 	item.DLabel = itemLabel;
 	item.Category = c;
 
@@ -122,14 +124,14 @@ function PRESETBIND:Init()
 	slider.Slider.OldMousePressed = slider.Slider.OnMousePressed;
 	slider.Slider.OldMouseReleased = slider.Slider.OnMouseReleased;
 	slider.Slider.OnMousePressed = function(s, mc)
-		print("Press");
+		--print("Press");
 		container.TargetPreset = preset;
 		container.Manipulating = true;
 		self.Manipulating = true;
 		s:OldMousePressed(mc);
 	end
 	slider.Slider.OnMouseReleased = function(s, mc)
-		print("Release");
+		--print("Release");
 		if self.Manipulating then
 			container.Manipulating = false;
 			self.Manipulating = false;
